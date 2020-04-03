@@ -18,6 +18,7 @@ GoBetween | A load balancer |
 
 
 ### 1. Setup RedHat Openshift subscription
+![RH](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/rh1.png)
 
 ### 2. Provision Baremetal Server
 
@@ -32,21 +33,62 @@ Once the baremetal server is ready, log into the server and clone this githup re
 
 ### 3. Get pull Secrets
 
+Login into RedHat URL https://cloud.redhat.com/openshift/install for downloading pull secrets and installer.
+
+![RH](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/rh2.png)
+
+copy pull-secret.json under the ocp43-on-baremetal folder
+
+```
+$ cp pull-secret.json ~/ocp43-on-baremetal
+```
+
 ### 4. Prepare baremetal server
+
+```
+$ cd ~/ocp43-on-baremetal/scripts
+$ sh prepare_host.sh
+```
 
 ### 5. Setup Network
 
+```
+$ sh setup-network.sh
+```
+
 ### 6. Setup Matchbox
+
+```
+$ sh setup-matchbox.sh 4.3.8
+```
 
 ### 7. Setup Installer
 
+```
+$ sh setup-installer.sh 4.3.8
+```
+
 ### 8. Setup Loadbalancer
 
+```
+$ sh setup-loadbalancer.sh 
+```
+
 ### 9. Setup Bootstrap
+```
+$ sh bootstrap.sh
+```
 
 ### 10. Setup NFS server
+```
+$ sh setup-nfs.sh 
 
+```
 ### 11. Add User
+
+```
+$ sh setup-users.sh
+```
 
 ### 12. Configure Internal Registry
 
