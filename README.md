@@ -31,6 +31,13 @@ Once the baremetal server is ready, log into the server and clone this githup re
    
 ```
 
+### 2. Setup DNS Wild Card entry CNAME record
+
+```
+*.apps.cluster.example.com
+api.cluster.example.com
+```
+
 ### 3. Get pull Secrets
 
 Login into RedHat URL https://cloud.redhat.com/openshift/install for downloading pull secrets and installer.
