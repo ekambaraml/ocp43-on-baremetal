@@ -21,6 +21,8 @@ GoBetween | A load balancer |
 
 ### 2. Provision Baremetal Server
 
+![baremetal](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/baremetal.png)
+
 Once the baremetal server is ready, log into the server and clone this githup repository
 ```
    $ ssh root@<baremetal server>
