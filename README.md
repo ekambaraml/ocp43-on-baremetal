@@ -99,3 +99,15 @@ $ sh setup-users.sh
 
 ### 12. Configure Internal Registry
 
+
+### 13. Attaching Raw disks to VM
+Run the commands from the host machine
+
+```
+$ virsh attach-disk master1 /dev/sdc  vdb --persistent
+$ virsh attach-disk master2 /dev/sdd  vdb --persistent
+$ virsh attach-disk master3 /dev/sde  vdb --persistent
+$ virsh attach-disk worker1 /dev/sdf  vdb --persistent
+$ virsh attach-disk worker2 /dev/sdg  vdb --persistent
+$ virsh attach-disk worker3 /dev/sdh  vdb --persistent
+```
