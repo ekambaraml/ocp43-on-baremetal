@@ -72,6 +72,10 @@ $ cd ~/ocp43-on-baremetal
 
 $ ./installocp.sh
 ```
+![Install](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/ocp43-install.jpg)
+
+![OCP Screen](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/ocp-43-screen.png)
+
 
 On successfull completion, this should have created
 
