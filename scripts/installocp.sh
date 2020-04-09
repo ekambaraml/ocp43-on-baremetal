@@ -69,26 +69,26 @@ then
    echo "Error, please check logs/bootstrap.log"
    exit 1 
 fi
-pause 'Press [Enter] key to continue...'
+# pause 'Press [Enter] key to continue...'
 
 # Setup NFS
-bash -x ./scripts/setup-nfs.sh | tee logs/setup-nfs.log
+# bash -x ./scripts/setup-nfs.sh | tee logs/setup-nfs.log
 
 #check the exit code
-if [ $? -eq 1 ]
-then
-   echo "Error, please check logs/setup-nfs.log"
-   exit 1 
-fi
-pause 'Press [Enter] key to continue...'
+# if [ $? -eq 1 ]
+# then
+#    echo "Error, please check logs/setup-nfs.log"
+#    exit 1 
+# fi
+# pause 'Press [Enter] key to continue...'
 
 # Setup users 
-bash -x ./scripts/setup-users.sh | tee logs/setup-users.log
+# bash -x ./scripts/setup-users.sh | tee logs/setup-users.log
 
 #check the exit code
-if [ $? -eq 1 ]
-then
-   echo "Error, please check logs/setup-users.log"
-   exit 1 
-fi
+# if [ $? -eq 1 ]
+# then
+#    echo "Error, please check logs/setup-users.log"
+#    exit 1 
+# fi
 

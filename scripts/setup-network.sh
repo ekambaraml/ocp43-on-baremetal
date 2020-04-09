@@ -29,9 +29,11 @@ fi
 # Setup DNSMasq/ipxe/tftp 
 #
 # Setup iPXE server
+apt-get -y  install tftp 
 apt -y install ipxe
 mkdir -p /var/lib/tftp
-cp /usr/lib/ipxe/{undionly.kpxe,ipxe.efi} /var/lib/tftp
+cp /usr/lib/ipxe/undionly.kpxe /var/lib/tftp
+cp /usr/lib/ipxe/ipxe.efi /var/lib/tftp
 chown dnsmasq:nogroup /var/lib/tftp/*
 
 # Install DNSMasq
@@ -40,7 +42,7 @@ systemctl enable dnsmasq; systemctl start dnsmasq
 
 # configure dnsmasq.conf
 cp ~/ocp43-on-baremetal/dnsmasq/dnsmasq.conf /etc/
-myurl=blueonca.ibmcloudpack.com
+myurl=`hostname -f`
 sed -i "s/mycluster.example.com/$myurl/g" /etc/dnsmasq.conf
 
 rm -rf /var/lib/misc/dnsmasq.leases

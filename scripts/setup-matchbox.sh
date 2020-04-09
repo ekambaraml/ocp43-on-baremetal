@@ -8,7 +8,6 @@ fi
 
 VERSION=4.3.8
 SVER=latest
-myurl=blueonca.ibmcloudpack.com
 
 cd ~
 wget https://github.com/poseidon/matchbox/releases/download/v0.8.3/matchbox-v0.8.3-linux-amd64.tar.gz
@@ -52,6 +51,8 @@ cp ~/ocp43-on-baremetal/matchbox/profiles/* .
 sed -i "s/rhcos-4.2.0-x86_64-installer-kernel/rhcos-$VERSION-x86_64-installer-kernel-x86_64/g" *.json
 sed -i "s/rhcos-4.2.0-x86_64-installer-initramfs.img/rhcos-$VERSION-x86_64-installer-initramfs.x86_64.img/g" *.json
 sed -i "s/rhcos-4.2.0-x86_64-metal-bios.raw.gz/rhcos-$VERSION-x86_64-metal.x86_64.raw.gz/g" *.json
+
+myurl=`hostname -f`
 
 sed -i "s/mycluster.example.com/$myurl/g" *.json
 

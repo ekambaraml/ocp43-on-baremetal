@@ -29,6 +29,7 @@ openshift-install create ignition-configs
 
 # Copy the ignition files
 cp *.ign /var/lib/matchbox/ignition
+chmod 755 /var/lib/matchbox/ignition/*
 
 # chmod the files so that they can be accessed
 chown -R matchbox:matchbox /var/lib/matchbox
