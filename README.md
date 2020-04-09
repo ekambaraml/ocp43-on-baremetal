@@ -1,6 +1,19 @@
 # Deploying OpenShift 4.3 on Baremetal Server
 
+RedHat Document: https://docs.openshift.com/container-platform/4.3/installing/installing_bare_metal/installing-bare-metal.html
 ![Architecture](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/ocp43-deployment.png)
+
+
+### Cluster Machines and Size
+
+Machine | Count | Operating System | vCPU | RAM | Storage |
+--------|-------|------------------|------|-----|---------|
+Bootstrap | 1 |  RHCOS | 8 Core | 16GB | 100 GB|
+Control Plane (Masters)| 3 | RHCOS | 8 Core | 32 GB | 200 GB |
+Compute (Worker) | 3 | RHCOS | 16 Core | 64 GB | 200 GB, 1 TB for Portworx on each worker |
+NFS Storage | - | - | - | - | 1 TB |
+DHCP/DNS, LoadBalancer | - | - | -|- | On the Host Server |
+
 
 ### Key Components
 
@@ -14,7 +27,7 @@ GoBetween | A load balancer |
 
 
 
-### Steps:
+### Procedure:
 
 
 ### 1. Setup RedHat Openshift subscription
@@ -24,6 +37,14 @@ GoBetween | A load balancer |
 
 ![baremetal](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/baremetal.png)
 
+### 3. Setup DNS Wild Card entry CNAME record
+
+```
+*.apps.cluster.example.com
+api.cluster.example.com
+```
+
+### 4. Clone the Git Repository for Automation
 Once the baremetal server is ready, log into the server and clone this githup repository
 ```
    $ ssh root@<baremetal server>
@@ -31,14 +52,7 @@ Once the baremetal server is ready, log into the server and clone this githup re
    
 ```
 
-### 2. Setup DNS Wild Card entry CNAME record
-
-```
-*.apps.cluster.example.com
-api.cluster.example.com
-```
-
-### 3. Get pull Secrets
+### 5. Get pull Secrets
 
 Login into RedHat URL https://cloud.redhat.com/openshift/install for downloading pull secrets and installer.
 
@@ -50,14 +64,56 @@ copy pull-secret.json under the ocp43-on-baremetal folder
 $ cp pull-secret.json ~/ocp43-on-baremetal
 ```
 
+
+### 6. Installing OpenShift 4.3
+
+```
+$ cd ~/ocp43-on-baremetal
+
+$ ./installocp.sh
+```
+
+On successfull completion, this should have created
+
+* [ ] installed required libraries
+
+* [ ] KVM Network
+
+* [ ] DNS/DHCP
+
+* [ ] loadblancer
+
+* [ ] Created KVM vms
+
+* [ ] Storages
+
+* [ ] Installed OpenShift 4.3 Cluster
+
+### 7.  Login and Test the cluster access
+
+
+# Detailed description of the step 6 
+
+
+
 ### 4. Prepare baremetal server
 
 ```
-$ cd ~/ocp43-on-baremetal/scripts
+
 $ sh prepare_host.sh
 ```
 
+
 ### 5. Setup Network
+
+#### Procedure
+* Configure DHCP or set static IP addresses on each node.
+
+* Configure the ports for your machines.
+
+* Configure DNS.
+
+* Ensure network connectivity.
 
 ```
 $ sh setup-network.sh
@@ -76,7 +132,7 @@ $ sh setup-installer.sh 4.3.8
 ```
 
 ### 8. Setup Loadbalancer
-
+* Provision the required load balancers.
 ```
 $ sh setup-loadbalancer.sh 
 ```
