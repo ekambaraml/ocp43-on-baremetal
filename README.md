@@ -93,14 +93,14 @@ On successfull completion, this should have created
 
 * [ ] Installed OpenShift 4.3 Cluster
 
-### 7.  Login and Test the cluster access
+Now, you can login and test the cluster access
 
 
 # Detailed description of the step 6 
 
 
 
-### 4. Prepare baremetal server
+#### 6.1 Prepare baremetal server
 
 ```
 
@@ -108,9 +108,9 @@ $ sh prepare_host.sh
 ```
 
 
-### 5. Setup Network
+#### 6.2 Setup Network
 
-#### Procedure
+Procedure
 * Configure DHCP or set static IP addresses on each node.
 
 * Configure the ports for your machines.
@@ -123,44 +123,44 @@ $ sh prepare_host.sh
 $ sh setup-network.sh
 ```
 
-### 6. Setup Matchbox
+#### 6.3 Setup Matchbox
 
 ```
 $ sh setup-matchbox.sh 4.3.8
 ```
 
-### 7. Setup Installer
+#### 6.4 Setup Installer
 
 ```
 $ sh setup-installer.sh 4.3.8
 ```
 
-### 8. Setup Loadbalancer
+#### 6.5 Setup Loadbalancer
 * Provision the required load balancers.
 ```
 $ sh setup-loadbalancer.sh 
 ```
 
-### 9. Setup Bootstrap
+#### 6.6 Setup Bootstrap
 ```
 $ sh bootstrap.sh
 ```
 
-### 10. Setup NFS server
+### 7 Setup NFS server
 ```
 $ sh setup-nfs.sh 
 
 ```
-### 11. Add User
+### 8 Add User
 
 ```
 $ sh setup-users.sh
 ```
 
-### 12. Configure Internal Registry
+### 9. Configure Internal Registry
 
 
-### 13. Attaching Raw disks to VM
+### 10. Attaching Raw disks to VM
 Run the commands from the host machine
 
 ```
