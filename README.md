@@ -67,6 +67,14 @@ $ cp pull-secret.json ~/ocp43-on-baremetal
 
 ### 6. Installing OpenShift 4.3
 
+Note: If you are reusing the machine again, Please run the cleanup script to delete previous instance of the cluster nodes with the command below
+```
+$ cd ~/ocp43-on-baremetal
+$ scripts/cleanup-cluster.sh
+```
+
+The following command is for creating fresh install
+
 ```
 $ cd ~/ocp43-on-baremetal
 
