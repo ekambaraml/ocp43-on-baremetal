@@ -42,6 +42,10 @@ GoBetween | A load balancer |
 ```
 *.apps.cluster.example.com
 api.cluster.example.com
+api-int.cluster.example.com
+etcd-1.cluster.example.com (master1)
+etcd-2.cluster.example.com (master2)
+etcd-3.cluster.example.com (master3)
 ```
 
 ### 4. Clone the Git Repository for Automation
