@@ -39,10 +39,11 @@ GoBetween | A load balancer |
 
 ### 3. Setup DNS Wild Card entry CNAME record
 
+All node names need to be resolved by DNS and additional DNS CNAME records are required to for the OpenShift 4.3 deployments.
 ```
-*.apps.cluster.example.com
-api.cluster.example.com
-api-int.cluster.example.com
+*.apps.cluster.example.com (LoadBalancer)
+api.cluster.example.com (LoadBalancer)
+api-int.cluster.example.com (LoadBalancer)
 etcd-1.cluster.example.com (master1)
 etcd-2.cluster.example.com (master2)
 etcd-3.cluster.example.com (master3)
