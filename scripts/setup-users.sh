@@ -3,7 +3,8 @@
 
 cd ~
 apt install -y apache2-utils
-
+or
+yum install httpd-tools
 # Create a password
 htpasswd -cBb htpasswd.txt ocadmin ocadmin
 
