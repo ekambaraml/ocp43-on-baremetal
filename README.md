@@ -83,7 +83,9 @@ The following command is for creating fresh install
 ```
 $ cd ~/ocp43-on-baremetal
 
-$ ./installocp.sh
+$ nohup ./installocp.sh >& logs/installocp.log &
+
+$ tail -f logs/installocp.log
 ```
 ![Install](https://github.com/ekambaraml/ocp43-on-baremetal/blob/master/ocp43-install.jpg)
 
@@ -161,6 +163,8 @@ $ sh bootstrap.sh
 
 ### 7 Setup NFS server
 ```
+$ cd ~/ocp43-on-baremetal/scripts
+
 $ sh setup-nfs.sh 
 
 ```
