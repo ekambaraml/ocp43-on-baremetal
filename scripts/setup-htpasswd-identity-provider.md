@@ -103,7 +103,7 @@ oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd --dry-run
 
 On successful creation, please delete the local password file.
 
-## How to replace oAuth ?
+## How to replace oAuth?
 
 ```
 oc replace -f oauth.yaml
@@ -112,7 +112,7 @@ example:
 oc replace -f htpasswd.yaml
 ```
 
-## How to delete a user ?
+## How to delete a users?
 
 Example delete user6
 
@@ -129,6 +129,11 @@ htpasswd -D htpasswd user6
 oc create secret generic htpass-secret --from-file=htpasswd=htpasswd --dry-run=client -o yaml -n openshift-config | oc replace -f -
 ```
 * Verify the user6 is deleted in secret
+
+```
+oc get secret htpass-secret -ojsonpath={.data.htpasswd} -n openshift-config | base64 --decode
+```
+  
 <img width="1493" alt="image" src="https://github.com/user-attachments/assets/dd542d1d-9498-4a65-91f4-0b152832c6a0" />
 
 * Remove resources
@@ -152,6 +157,12 @@ oc delete identity htpasswd:user6
 oc login -u user6 -p Password6
 ```
   <img width="1186" alt="image" src="https://github.com/user-attachments/assets/fd438f01-20a6-40d7-acb8-6b7f86d5d1e0" />
+
+* Check the OAuth pods are restarted
+```
+oc get pods -n openshift-authentication
+```
+<img width="666" alt="image" src="https://github.com/user-attachments/assets/0b2f1ef7-283d-4da4-a415-5d1379046f15" />
 
 ## List all the users
 It will only list users who were logged into the system
