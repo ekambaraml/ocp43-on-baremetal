@@ -76,20 +76,20 @@ oc login -u <username>
 
 ## How to generate htpasswd file for appending more users
 
-Log in to the cluster as a cluster-admin and retrieve the secret as a file.
+* Log in to the cluster as a cluster-admin and retrieve the secret as a file.
 ```
 oc get secret htpass-secret -ojsonpath={.data.htpasswd} -n openshift-config | base64 --decode > test.htpasswd
 ```
+<img width="1186" alt="image" src="https://github.com/user-attachments/assets/a036fb68-4f68-4cb3-b682-550286f909d7" />
 
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/111f5f8f-b403-4f3e-955c-24a019ed44fc" />
-
-
-
-
+* Add password to the htpasswd file
+```
+htpasswd -b htpasswd user6 Password6
+```
 <img width="713" alt="image" src="https://github.com/user-attachments/assets/997cbaf8-c9ae-4d6a-8625-11115ab8bda4" />
 
 
-Replace the htpass-secret Secret object with the updated users in the htpasswd file:
+* Replace the htpass-secret Secret object with the updated users in the htpasswd file:
 ```
 oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd --dry-run=client -o yaml -n openshift-config | oc replace -f -
 ```
@@ -97,7 +97,7 @@ oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd --dry-run
 <img width="1309" alt="image" src="https://github.com/user-attachments/assets/17b04d2b-f67b-4789-928e-76bbb012a015" />
 
 
-
+* Verify
 
 <img width="1309" alt="image" src="https://github.com/user-attachments/assets/6d759bc7-1d89-4b82-a53f-1c48443a807b" />
 
@@ -111,3 +111,44 @@ oc replace -f oauth.yaml
 example:
 oc replace -f htpasswd.yaml
 ```
+
+## How to delete a user ?
+
+Example delete user6
+
+* Delete the user from the htpasswd file
+```
+cat htpasswd
+htpasswd -D htpasswd user6
+```
+<img width="560" alt="image" src="https://github.com/user-attachments/assets/252ae66b-db8c-48bb-adb1-206f6720dfbc" />
+
+* Update the secret
+
+```
+oc create secret generic htpass-secret --from-file=htpasswd=htpasswd --dry-run=client -o yaml -n openshift-config | oc replace -f -
+```
+* Verify the user6 is deleted in secret
+<img width="1493" alt="image" src="https://github.com/user-attachments/assets/dd542d1d-9498-4a65-91f4-0b152832c6a0" />
+
+* Remove resources
+```   
+If you removed one or more users, you should also remove existing resources for each user.
+
+Example:
+
+ oc delete user user6
+```
+
+<img width="498" alt="image" src="https://github.com/user-attachments/assets/36725309-8488-4b63-b9a9-123810b2a60b" />
+
+```
+oc delete identity htpasswd:user6
+```
+<img width="498" alt="image" src="https://github.com/user-attachments/assets/e77352a0-e8f2-4571-bb06-d9c77ffeb725" />
+
+* Verify login for the deleted user
+```
+oc login -u user6 -p Password6
+```
+  <img width="1186" alt="image" src="https://github.com/user-attachments/assets/fd438f01-20a6-40d7-acb8-6b7f86d5d1e0" />
