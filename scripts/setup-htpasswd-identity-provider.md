@@ -152,3 +152,7 @@ oc delete identity htpasswd:user6
 oc login -u user6 -p Password6
 ```
   <img width="1186" alt="image" src="https://github.com/user-attachments/assets/fd438f01-20a6-40d7-acb8-6b7f86d5d1e0" />
+
+## List all the users
+It will only list users who were logged into the system
+<img width="1370" alt="image" src="https://github.com/user-attachments/assets/fcd5548d-b1d5-482b-8ee4-cea8a93db6b9" />
