@@ -72,6 +72,8 @@ oc login -u <username>
 <img width="694" alt="image" src="https://github.com/user-attachments/assets/59280fa5-675c-4e3a-b44e-00193ca4ac60" />
 
 
+# Troubleshooting
+
 ## How to generate htpasswd file for appending more users
 
 Log in to the cluster as a cluster-admin and retrieve the secret as a file.
@@ -82,4 +84,30 @@ oc get secret htpass-secret -ojsonpath={.data.htpasswd} -n openshift-config | ba
 <img width="1212" alt="image" src="https://github.com/user-attachments/assets/111f5f8f-b403-4f3e-955c-24a019ed44fc" />
 
 
+
+
+<img width="713" alt="image" src="https://github.com/user-attachments/assets/997cbaf8-c9ae-4d6a-8625-11115ab8bda4" />
+
+
+Replace the htpass-secret Secret object with the updated users in the htpasswd file:
+```
+oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd --dry-run=client -o yaml -n openshift-config | oc replace -f -
+```
+
+<img width="1309" alt="image" src="https://github.com/user-attachments/assets/17b04d2b-f67b-4789-928e-76bbb012a015" />
+
+
+
+
+<img width="1309" alt="image" src="https://github.com/user-attachments/assets/6d759bc7-1d89-4b82-a53f-1c48443a807b" />
+
 On successful creation, please delete the local password file.
+
+## How to replace oAuth ?
+
+```
+oc replace -f oauth.yaml
+
+example:
+oc replace -f htpasswd.yaml
+```
