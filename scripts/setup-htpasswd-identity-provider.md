@@ -1,4 +1,4 @@
-## Setup htpasswd identity provider 
+## Setup htpasswd identity provider for OpenShift
 
 - [ ] Install httpd-tools
 
